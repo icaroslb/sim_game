@@ -15,18 +15,20 @@ public class S_Player : MonoBehaviour
     private void Awake()
     {
         inventory = new S_Inventory();
-
-        inventory.AddItem(new S_Item { type = S_Item.ItemType.Shirt, id = 0 });
-        inventory.AddItem(new S_Item { type = S_Item.ItemType.Shirt, id = 1 });
-        inventory.AddItem(new S_Item { type = S_Item.ItemType.Short, id = 0 });
-        inventory.AddItem(new S_Item { type = S_Item.ItemType.RightShoe, id = 0 });
-        inventory.AddItem(new S_Item { type = S_Item.ItemType.LeftShoe, id = 0 });
-
-        uiInventory.insertInventory(inventory);
     }
 
     private void Start()
     {
+        inventory.AddItem(new S_Item { type = S_Item.ItemType.Shirt, id = 0 });
+        inventory.AddItem(new S_Item { type = S_Item.ItemType.Shirt, id = 1 });
+        inventory.AddItem(new S_Item { type = S_Item.ItemType.Short, id = 0 });
+        inventory.AddItem(new S_Item { type = S_Item.ItemType.Short, id = 1 });
+        inventory.AddItem(new S_Item { type = S_Item.ItemType.RightShoe, id = 0 });
+        inventory.AddItem(new S_Item { type = S_Item.ItemType.LeftShoe, id = 0 });
+
+        uiInventory.insertInventory(inventory);
+        uiInventory.UpdateInventory();
+
         character.UpdateData(S_IO.Load(name));
     }
 

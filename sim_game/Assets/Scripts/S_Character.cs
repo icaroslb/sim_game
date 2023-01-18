@@ -34,6 +34,25 @@ public class S_Character : MonoBehaviour
         }
     }
 
+    public void ChangeClothe (S_Item.ItemType itemType, int id)
+    {
+        switch (itemType)
+        {
+            case S_Item.ItemType.Shirt:
+                idShirt = id;
+                break;
+            case S_Item.ItemType.Short:
+                idShort = id;
+                break;
+            case S_Item.ItemType.LeftShoe:
+                idShoes = id;
+                break;
+            case S_Item.ItemType.RightShoe:
+                idShoes = id;
+                break;
+        }
+    }
+
     private void UpdateSprite(SpriteRenderer spriteR, S_Item.ItemType itemType, int id)
     {
         spriteR.sprite = S_ItemsAsset.instance.GetAsset(itemType, id);

@@ -8,6 +8,7 @@ public class S_Item
     {
         Shirt,
         Short,
+        Shoes,
         RightShoe,
         LeftShoe
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,11 +20,21 @@ public class S_UIInventory : MonoBehaviour
     public void insertInventory (S_Inventory inventory)
     {
         _inventory = inventory;
+        inventory.OnInventoryChange += OnInventoryChange;
+    }
+
+    private void OnInventoryChange (object sender, EventArgs e)
+    {
         UpdateInventory();
     }
 
-    private void UpdateInventory ()
+    public void UpdateInventory ()
     {
+        foreach (Transform child in _clothesSlotContainer)
+        {
+            Destroy(child.gameObject);
+        }
+
         int x = 0;
         int y = 0;
 
@@ -32,12 +43,13 @@ public class S_UIInventory : MonoBehaviour
 
         foreach (S_Item item in _inventory.listItems)
         {
-            RectTransform newItem = Instantiate(_clotheSlot, _clothesSlotContainer).GetComponent<RectTransform>();
+            Transform newIntance = Instantiate(_clotheSlot, _clothesSlotContainer);
+            S_ClotheSlot newClotheSlot = newIntance.GetComponent<S_ClotheSlot>();
+            RectTransform newItem = newIntance.GetComponent<RectTransform>();
+
+            newClotheSlot.Initialize(item, GameManager.instance.OnChangeClothes);
             newItem.anchoredPosition = new Vector2(x * sizeItemWidth, -y * sizeItemHeight);
             
-            Image image = newItem.Find("Image").GetComponent<Image>();
-            image.sprite = S_ItemsAsset.instance.GetAsset(item.type, item.id);
-
             x++;
 
             if (x >= qtdItemLine)
