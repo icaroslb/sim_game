@@ -20,4 +20,10 @@ public class S_Inventory
         listItems.Add(item);
         OnInventoryChange?.Invoke(this, EventArgs.Empty);
     }
+
+    public void RemoveItem (S_Item item)
+    {
+        Debug.Log( listItems.Remove(item) );
+        OnInventoryChange?.Invoke(this, EventArgs.Empty);
+    }
 }

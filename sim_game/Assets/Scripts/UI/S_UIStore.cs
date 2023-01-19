@@ -56,20 +56,33 @@ public class S_UIStore : MonoBehaviour
         float sizeItemWidth = itemSize + borderSizeWidth;
         float sizeItemHeight = itemSize + borderSizeHeight;
 
-        InitializeItemSlots(_store.shirtsIds, S_Item.ItemType.Shirt, ref x, ref y, sizeItemWidth, sizeItemHeight);
-        InitializeItemSlots(_store.shortsIds, S_Item.ItemType.Short, ref x, ref y, sizeItemWidth, sizeItemHeight);
-        InitializeItemSlots(_store.shoesIds, S_Item.ItemType.Shoes, ref x, ref y, sizeItemWidth, sizeItemHeight);
+        InitializeItemSlots(_store.shirtsIds, _store.isBoughtShirt, S_Item.ItemType.Shirt, ref x, ref y, sizeItemWidth, sizeItemHeight);
+        InitializeItemSlots(_store.shortsIds, _store.isBoughtShort, S_Item.ItemType.Short, ref x, ref y, sizeItemWidth, sizeItemHeight);
+        InitializeItemSlots(_store.shoesIds, _store.isBoughtShoes, S_Item.ItemType.Shoes, ref x, ref y, sizeItemWidth, sizeItemHeight);
     }
 
-    private void InitializeItemSlots (in List<int> listIds, S_Item.ItemType typeItem, ref int x, ref int y, float sizeItemWidth, float sizeItemHeight)
+    private void InitializeItemSlots (in List<int> listIds, in List<bool> listIdsSold, S_Item.ItemType typeItem, ref int x, ref int y, float sizeItemWidth, float sizeItemHeight)
     {
+        int i = 0;
+
         foreach (int item in listIds)
         {
             Transform newInstance = Instantiate(_itemSlot, _itemSlotContainer);
             S_StoreItemSlot newItemSlot = newInstance.GetComponent<S_StoreItemSlot>();
             RectTransform newItem = newInstance.GetComponent<RectTransform>();
 
-            newItemSlot.Initialize(new S_Item { id = item, type = typeItem, price = S_ItemsAsset.instance.Getprice(typeItem, item) }, null);
+            newItemSlot.Initialize(
+                new S_Item
+                {
+                    id = item,
+                    type = typeItem,
+                    price = S_ItemsAsset.instance.Getprice(typeItem, item)
+                },
+                listIdsSold[i],
+                GameManager.instance.OnItemBuySell,
+                _store.BuyItem,
+                _store.SellItem
+                );
             newItem.anchoredPosition = new Vector2(x * sizeItemWidth, -y * sizeItemHeight);
 
             x++;
@@ -79,6 +92,8 @@ public class S_UIStore : MonoBehaviour
                 x = 0;
                 y++;
             }
+
+            i++;
         }
     }
 }

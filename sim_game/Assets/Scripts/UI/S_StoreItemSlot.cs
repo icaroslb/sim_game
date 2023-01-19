@@ -13,26 +13,47 @@ public class S_StoreItemSlot : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Transform value;
     [SerializeField] private Transform boughtTransform;
     [SerializeField] private TextMeshProUGUI price;
+    [SerializeField] public bool isSold { get; private set; }
 
     public event EventHandler OnSlotCliked;
+    public event EventHandler OnBuy;
+    public event EventHandler OnSell;
 
-    public void Initialize(S_Item newItem, EventHandler e)
+
+    public void Initialize(S_Item newItem, bool itemIsSold, EventHandler eClick, EventHandler eBuy, EventHandler eSell)
     {
         item = newItem;
-        OnSlotCliked += e;
+        OnSlotCliked += eClick;
+        OnBuy += eBuy;
+        OnSell += eSell;
 
-        //Image image = transform.Find("Image").GetComponent<Image>();
-        //Transform value = transform.Find("Value");
-        //Transform boughtTransform = transform.Find("Bought");
-        //TextMeshPro price = transform.Find("Price").GetComponent<TextMeshPro>();
-
-        price.text = item.price.ToString();
+        isSold = itemIsSold;
         
         image.sprite = S_ItemsAsset.instance.GetAsset(item.type, item.id);
+
+        if (!isSold)
+        {
+            price.text = item.price.ToString();
+        }
+        else
+        {
+            value.gameObject.SetActive(false);
+            boughtTransform.gameObject.SetActive(true);
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         OnSlotCliked?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void Buy ()
+    {
+            OnBuy?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void Sell ()
+    {
+            OnSell?.Invoke(this, EventArgs.Empty);
     }
 }

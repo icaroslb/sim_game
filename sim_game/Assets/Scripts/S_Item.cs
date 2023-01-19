@@ -26,4 +26,20 @@ public class S_Item
     public ItemType type { get { return _type; } set { _type = value; } }
     public int id { get { return _id;} set { _id = value; } }
     public int price { get { return _price; } set { _price = value; } }
+
+    public override bool Equals(object obj)
+    {
+        if (obj == null) return false;
+
+        S_Item item = obj as S_Item;
+        if (item == null) return false;
+
+        return Equals(item);
+    }
+
+    public bool Equals (S_Item other)
+    {
+        if (other.type == type && other.id == id) return true;
+        return false;
+    }
 }

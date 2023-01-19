@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class S_Store
 {
@@ -26,24 +27,64 @@ public class S_Store
         isBoughtShort = new List<bool>(shortsIds.Count);
         isBoughtShoes = new List<bool>(shoesIds.Count);
 
-        isBoughtShirt.ForEach(i => { i = false; });
-        isBoughtShort.ForEach(i => { i = false; });
-        isBoughtShoes.ForEach(i => { i = false; });
+        InitializeBoughtList(ref isBoughtShirt, shirtsIds.Count);
+        InitializeBoughtList(ref isBoughtShort, shortsIds.Count);
+        InitializeBoughtList(ref isBoughtShoes, shoesIds.Count);
     }
 
-    //public void BuyItem (int id)
-    //{
-    //    int pos = items.Find(i => i == id);
-    //    isBought[pos] = false;
-    //
-    //    OnStoreChange?.Invoke(this, EventArgs.Empty);
-    //}
-    //
-    //public void SellItem(int id)
-    //{
-    //    int pos = items.Find(i => i == id);
-    //    isBought[pos] = true;
-    //
-    //    OnStoreChange?.Invoke(this, EventArgs.Empty);
-    //}
+    private void InitializeBoughtList (ref List<bool> boughtList, int size)
+    {
+        for (int i = 0; i < size; i++)
+        {
+            boughtList.Add(false);
+        }
+    }
+
+    public void BuyItem (object sender, EventArgs e)
+    {
+        S_StoreItemSlot itemBougth = sender as S_StoreItemSlot;
+        int pos;
+        
+        switch (itemBougth.item.type)
+        {
+            case S_Item.ItemType.Shirt:
+                pos = shirtsIds.Find(i => i == itemBougth.item.id);
+                isBoughtShirt[pos] = true;
+                break;
+            case S_Item.ItemType.Short:
+                pos = shortsIds.Find(i => i == itemBougth.item.id);
+                isBoughtShort[pos] = true;
+                break;
+            case S_Item.ItemType.Shoes:
+                pos = shoesIds.Find(i => i == itemBougth.item.id);
+                isBoughtShoes[pos] = true;
+                break;
+        }
+
+        OnStoreChange?.Invoke(this, EventArgs.Empty);
+    }
+    
+    public void SellItem(object sender, EventArgs e)
+    {
+        S_StoreItemSlot itemBougth = sender as S_StoreItemSlot;
+        int pos;
+
+        switch (itemBougth.item.type)
+        {
+            case S_Item.ItemType.Shirt:
+                pos = shirtsIds.Find(i => i == itemBougth.item.id);
+                isBoughtShirt[pos] = false;
+                break;
+            case S_Item.ItemType.Short:
+                pos = shortsIds.Find(i => i == itemBougth.item.id);
+                isBoughtShort[pos] = false;
+                break;
+            case S_Item.ItemType.Shoes:
+                pos = shoesIds.Find(i => i == itemBougth.item.id);
+                isBoughtShoes[pos] = false;
+                break;
+        }
+
+        OnStoreChange?.Invoke(this, EventArgs.Empty);
+    }
 }

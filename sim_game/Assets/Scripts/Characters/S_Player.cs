@@ -8,7 +8,7 @@ public class S_Player : MonoBehaviour
     [SerializeField] private string playerName;
     [SerializeField] private float speed = 10.0f;
     [SerializeField] private S_Inventory inventory;
-    [SerializeField] private int money;
+    [SerializeField] private S_Pocket _pocket;
 
     [SerializeField] private S_Character character;
     [SerializeField] private S_UIInventory uiInventory;
@@ -16,10 +16,12 @@ public class S_Player : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform cameraPosition;
 
+    public S_Pocket pocket { get { return _pocket; } private set { _pocket = value; } }
+
     private void Awake()
     {
         inventory = new S_Inventory();
-        money = 0;
+        pocket = new S_Pocket(20);
     }
 
     private void Start()
@@ -27,11 +29,11 @@ public class S_Player : MonoBehaviour
         if (uiInventory != null)
             uiInventory.insertInventory(inventory);
 
-        inventory.AddItem(new S_Item { type = S_Item.ItemType.Shirt, id = 0 });
-        inventory.AddItem(new S_Item { type = S_Item.ItemType.Shirt, id = 1 });
-        inventory.AddItem(new S_Item { type = S_Item.ItemType.Short, id = 0 });
-        inventory.AddItem(new S_Item { type = S_Item.ItemType.Short, id = 1 });
-        inventory.AddItem(new S_Item { type = S_Item.ItemType.Shoes, id = 0 });
+        //inventory.AddItem(new S_Item { type = S_Item.ItemType.Shirt, id = 0 });
+        //inventory.AddItem(new S_Item { type = S_Item.ItemType.Shirt, id = 1 });
+        //inventory.AddItem(new S_Item { type = S_Item.ItemType.Short, id = 0 });
+        //inventory.AddItem(new S_Item { type = S_Item.ItemType.Short, id = 1 });
+        //inventory.AddItem(new S_Item { type = S_Item.ItemType.Shoes, id = 0 });
 
         character.Initialize(S_IO.Load(name));
     }
@@ -51,5 +53,24 @@ public class S_Player : MonoBehaviour
         {
             cameraPosition.position = transform.position + new Vector3(0f, 0f, -10f);
         }
+    }
+
+    public bool Buy (S_Item item)
+    {
+        bool canBuy = pocket.Buy(item.price);
+
+        if (canBuy)
+        {
+            inventory.AddItem(item);
+            return true;
+        }
+
+        return false;
+    }
+
+    public void Sell (S_Item item)
+    {
+        pocket.Sell(item.price);
+        inventory.RemoveItem(item);
     }
 }
