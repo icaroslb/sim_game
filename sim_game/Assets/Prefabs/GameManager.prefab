@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9090729042499018101
+--- !u!1 &3885020586841835862
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9090729042499018100}
-  - component: {fileID: 9090729042499018099}
+  - component: {fileID: 3885020586841835864}
+  - component: {fileID: 3885020586841835865}
+  - component: {fileID: 5427903276166935982}
   m_Layer: 0
-  m_Name: ItemsAsset
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9090729042499018100
+--- !u!4 &3885020586841835864
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9090729042499018101}
+  m_GameObject: {fileID: 3885020586841835862}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,25 +33,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9090729042499018099
+--- !u!114 &3885020586841835865
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9090729042499018101}
+  m_GameObject: {fileID: 3885020586841835862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91871eea313e397449c3ea6778258f04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCharacters:
+  - {fileID: 0}
+--- !u!114 &5427903276166935982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3885020586841835862}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96927569a04236e4aad22b04ec9e196e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shirtSprites:
+  shirtsSprites:
   - {fileID: 21300000, guid: 2f344d3c6a0ce264baf6eb608ae0aabe, type: 3}
   - {fileID: 21300000, guid: b831a1d610e17da47bf040dc45b8bdb4, type: 3}
+  shirtsPrices: 0a0000000a000000
   shortsSprites:
   - {fileID: 21300000, guid: 935dbe9f2257fb94cab0cb5314c86439, type: 3}
   - {fileID: 21300000, guid: 974d3f766bd1bab468db672d80e90b14, type: 3}
+  shortsPrices: 0a0000000a000000
+  ShoesSprites:
+  - {fileID: 21300000, guid: c162a6df8bbe0a44b94edc2008f0058d, type: 3}
+  ShoesPrices: 0a000000
   rightShoeSprites:
   - {fileID: 21300000, guid: 41ebae19c2d8f0641874742fef80f9df, type: 3}
   leftShoeSprites:
   - {fileID: 21300000, guid: 0b29ac0399f427646a66ee2fc8da2b3b, type: 3}
+  shirtSpritesNPC:
+  - {fileID: 21300000, guid: ebf7bd97b6540a54aa8575484411ab48, type: 3}
+  shortsSpritesNPC:
+  - {fileID: 21300000, guid: 31be3c9dcfe281a4393240f2a29648cb, type: 3}
+  rightShoeSpritesNPC:
+  - {fileID: 21300000, guid: d3ad01616af48eb47a96dca79d622164, type: 3}
+  leftShoeSpritesNPC:
+  - {fileID: 21300000, guid: 8b6dee7e18759b04e9cf5361fc16089b, type: 3}

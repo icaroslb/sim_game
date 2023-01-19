@@ -28,7 +28,7 @@ public class S_UIInventory : MonoBehaviour
         UpdateInventory();
     }
 
-    public void UpdateInventory ()
+    private void UpdateInventory ()
     {
         foreach (Transform child in _clothesSlotContainer)
         {
@@ -43,9 +43,9 @@ public class S_UIInventory : MonoBehaviour
 
         foreach (S_Item item in _inventory.listItems)
         {
-            Transform newIntance = Instantiate(_clotheSlot, _clothesSlotContainer);
-            S_ClotheSlot newClotheSlot = newIntance.GetComponent<S_ClotheSlot>();
-            RectTransform newItem = newIntance.GetComponent<RectTransform>();
+            Transform newInstance = Instantiate(_clotheSlot, _clothesSlotContainer);
+            S_ClotheSlot newClotheSlot = newInstance.GetComponent<S_ClotheSlot>();
+            RectTransform newItem = newInstance.GetComponent<RectTransform>();
 
             newClotheSlot.Initialize(item, GameManager.instance.OnChangeClothes);
             newItem.anchoredPosition = new Vector2(x * sizeItemWidth, -y * sizeItemHeight);

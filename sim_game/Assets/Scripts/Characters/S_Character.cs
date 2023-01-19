@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class S_Character : MonoBehaviour
 {
+    //Character Type
+    [SerializeField] public S_Item.CharacterType type { get; private set; }
+
     // Clothes IDs
     [SerializeField] private int _idShirt;
     [SerializeField] private int _idShort;
@@ -21,8 +24,24 @@ public class S_Character : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteLeftHand;
 
     // Getters and Setters
-    public int idShirt { get { return _idShirt; } set { _idShirt = value; UpdateSprite(spriteShirt, S_Item.ItemType.Shirt, _idShirt); } }
-    public int idShort { get { return _idShort; } set { _idShort = value; UpdateSprite(spriteShort, S_Item.ItemType.Short, _idShort); } }
+    public int idShirt
+    {
+        get { return _idShirt; }
+        set
+        {
+            _idShirt = value;
+            UpdateSprite(spriteShirt, S_Item.ItemType.Shirt, _idShirt);
+        }
+    }
+    public int idShort
+    {
+        get { return _idShort; }
+        set
+        {
+            _idShort = value;
+            UpdateSprite(spriteShort, S_Item.ItemType.Short, _idShort);
+        }
+    }
     public int idShoes
     {
         get { return _idShoes; }
@@ -32,6 +51,24 @@ public class S_Character : MonoBehaviour
             UpdateSprite(spriteRightShoe, S_Item.ItemType.RightShoe, _idShoes);
             UpdateSprite(spriteLeftShoe, S_Item.ItemType.LeftShoe, _idShoes);
         }
+    }
+    public void Initialize(S_IOCharacter data)
+    {
+        type = S_Item.CharacterType.Player;
+
+        idShirt = data._idShirt;
+        idShort = data._idShort;
+        idShoes = data._idShoes;
+    }
+    public void Initialize(S_Item.CharacterType newType)
+    {
+        type = newType;
+        
+        int value = type.GetHashCode();
+
+        idShirt = value;
+        idShort = value;
+        idShoes = value;
     }
 
     public void ChangeClothe (S_Item.ItemType itemType, int id)
@@ -44,10 +81,7 @@ public class S_Character : MonoBehaviour
             case S_Item.ItemType.Short:
                 idShort = id;
                 break;
-            case S_Item.ItemType.LeftShoe:
-                idShoes = id;
-                break;
-            case S_Item.ItemType.RightShoe:
+            case S_Item.ItemType.Shoes:
                 idShoes = id;
                 break;
         }
@@ -55,12 +89,9 @@ public class S_Character : MonoBehaviour
 
     private void UpdateSprite(SpriteRenderer spriteR, S_Item.ItemType itemType, int id)
     {
-        spriteR.sprite = S_ItemsAsset.instance.GetAsset(itemType, id);
-    }
-    public void UpdateData(S_IOCharacter data)
-    {
-        idShirt = data._idShirt;
-        idShort = data._idShort;
-        idShoes = data._idShoes;
+        if (type == S_Item.CharacterType.Player)
+            spriteR.sprite = S_ItemsAsset.instance.GetAsset(itemType, id);
+        else
+            spriteR.sprite = S_ItemsAsset.instance.GetAssetNPC(itemType, id);
     }
 }

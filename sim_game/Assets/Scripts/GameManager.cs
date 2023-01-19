@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
     public static GameManager instance { get; private set; }
     [SerializeField] private List<S_Character> playerCharacters;
     
-    // Start is called before the first frame update
     void Awake()
     {
         instance = this;
