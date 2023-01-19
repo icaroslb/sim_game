@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static S_Item;
 
 public class S_Character : MonoBehaviour
 {
@@ -52,6 +53,11 @@ public class S_Character : MonoBehaviour
             UpdateSprite(spriteLeftShoe, S_Item.ItemType.LeftShoe, _idShoes);
         }
     }
+
+    public void Initialize()
+    {
+        Initialize(new S_IOCharacter() { _idShirt = -1, _idShort = -1, _idShoes = -1 });
+    }
     public void Initialize(S_IOCharacter data)
     {
         type = S_Item.CharacterType.Player;
@@ -60,6 +66,8 @@ public class S_Character : MonoBehaviour
         idShort = data._idShort;
         idShoes = data._idShoes;
     }
+
+
     public void Initialize(S_Item.CharacterType newType)
     {
         type = newType;
@@ -69,6 +77,21 @@ public class S_Character : MonoBehaviour
         idShirt = value;
         idShort = value;
         idShoes = value;
+    }
+
+    public bool IsUsing (S_Item item)
+    {
+        switch (item.type)
+        {
+            case S_Item.ItemType.Shirt:
+                return _idShirt == item.id;
+            case S_Item.ItemType.Short:
+                return _idShort == item.id;
+            case S_Item.ItemType.Shoes:
+                return _idShoes == item.id;
+        }
+
+        return false;
     }
 
     public void ChangeClothe (S_Item.ItemType itemType, int id)

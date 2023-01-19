@@ -29,13 +29,11 @@ public class S_Player : MonoBehaviour
         if (uiInventory != null)
             uiInventory.insertInventory(inventory);
 
-        //inventory.AddItem(new S_Item { type = S_Item.ItemType.Shirt, id = 0 });
-        //inventory.AddItem(new S_Item { type = S_Item.ItemType.Shirt, id = 1 });
-        //inventory.AddItem(new S_Item { type = S_Item.ItemType.Short, id = 0 });
-        //inventory.AddItem(new S_Item { type = S_Item.ItemType.Short, id = 1 });
-        //inventory.AddItem(new S_Item { type = S_Item.ItemType.Shoes, id = 0 });
+        inventory.AddItem(new S_Item { type = S_Item.ItemType.Shirt, id = -1, price = 0 });
+        inventory.AddItem(new S_Item { type = S_Item.ItemType.Short, id = -1, price = 0 });
+        inventory.AddItem(new S_Item { type = S_Item.ItemType.Shoes, id = -1, price = 0 });
 
-        character.Initialize(S_IO.Load(name));
+        character.Initialize();
     }
 
     private void LateUpdate()
@@ -72,5 +70,10 @@ public class S_Player : MonoBehaviour
     {
         pocket.Sell(item.price);
         inventory.RemoveItem(item);
+
+        if (character.IsUsing(item))
+        {
+            character.ChangeClothe(item.type, -1);
+        }
     }
 }

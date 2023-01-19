@@ -11,7 +11,7 @@ public class S_StoreItemSlot : MonoBehaviour, IPointerClickHandler
     [SerializeField] public S_Item item { get; private set; }
     [SerializeField] private Image image;
     [SerializeField] private Transform value;
-    [SerializeField] private Transform boughtTransform;
+    [SerializeField] private TextMeshProUGUI action;
     [SerializeField] private TextMeshProUGUI price;
     [SerializeField] public bool isSold { get; private set; }
 
@@ -31,14 +31,17 @@ public class S_StoreItemSlot : MonoBehaviour, IPointerClickHandler
         
         image.sprite = S_ItemsAsset.instance.GetAsset(item.type, item.id);
 
+        price.text = item.price.ToString();
+
         if (!isSold)
         {
-            price.text = item.price.ToString();
+            action.text = "Buy";
+            action.color = Color.green;
         }
         else
         {
-            value.gameObject.SetActive(false);
-            boughtTransform.gameObject.SetActive(true);
+            action.text = "Sell";
+            action.color = Color.red;
         }
     }
 

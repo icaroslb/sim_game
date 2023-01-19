@@ -19,9 +19,9 @@ public class S_UIStore : MonoBehaviour
 
     void Start()
     {
-        int qtdShirts = S_ItemsAsset.instance.shirtsSprites.Count;
-        int qtdShorts = S_ItemsAsset.instance.shortsSprites.Count;
-        int qtdShoes = S_ItemsAsset.instance.ShoesSprites.Count;
+        int qtdShirts = S_ItemsAsset.instance.GetQtdShirts();
+        int qtdShorts = S_ItemsAsset.instance.GetQtdShorts();
+        int qtdShoes = S_ItemsAsset.instance.GetQtdShoes();
 
 
         List<int> shirtsId = new List<int>(qtdShirts);

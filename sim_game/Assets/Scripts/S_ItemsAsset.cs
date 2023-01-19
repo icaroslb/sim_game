@@ -12,22 +12,26 @@ public class S_ItemsAsset : MonoBehaviour
         instance = this;
     }
 
-    [SerializeField] public List<Sprite> shirtsSprites;
-    [SerializeField] public List<int> shirtsPrices;
+    [SerializeField] private Sprite shirtDefault;
+    [SerializeField] private Sprite shortDefault;
+    [SerializeField] private Sprite shoesDefault;
 
-    [SerializeField] public List<Sprite> shortsSprites;
-    [SerializeField] public List<int> shortsPrices;
+    [SerializeField] private List<Sprite> shirtsSprites;
+    [SerializeField] private List<int> shirtsPrices;
 
-    [SerializeField] public List<Sprite> ShoesSprites;
-    [SerializeField] public List<int> ShoesPrices;
+    [SerializeField] private List<Sprite> shortsSprites;
+    [SerializeField] private List<int> shortsPrices;
 
-    [SerializeField] public List<Sprite> rightShoeSprites;
-    [SerializeField] public List<Sprite> leftShoeSprites;
+    [SerializeField] private List<Sprite> ShoesSprites;
+    [SerializeField] private List<int> ShoesPrices;
 
-    [SerializeField] public List<Sprite> shirtSpritesNPC;
-    [SerializeField] public List<Sprite> shortsSpritesNPC;
-    [SerializeField] public List<Sprite> rightShoeSpritesNPC;
-    [SerializeField] public List<Sprite> leftShoeSpritesNPC;
+    [SerializeField] private List<Sprite> rightShoeSprites;
+    [SerializeField] private List<Sprite> leftShoeSprites;
+
+    [SerializeField] private List<Sprite> shirtSpritesNPC;
+    [SerializeField] private List<Sprite> shortsSpritesNPC;
+    [SerializeField] private List<Sprite> rightShoeSpritesNPC;
+    [SerializeField] private List<Sprite> leftShoeSpritesNPC;
 
     public int Getprice (ItemType itemType, int id)
     {
@@ -53,23 +57,44 @@ public class S_ItemsAsset : MonoBehaviour
     {
         Sprite spriteReturn = null;
 
-        switch (itemType)
+        if (id < 0)
         {
-            case ItemType.Shirt:
-                spriteReturn = shirtsSprites[id];
-                break;
-            case ItemType.Short:
-                spriteReturn = shortsSprites[id];
-                break;
-            case ItemType.Shoes:
-                spriteReturn = ShoesSprites[id];
-                break;
-            case ItemType.RightShoe:
-                spriteReturn = rightShoeSprites[id];
-                break;
-            case ItemType.LeftShoe:
-                spriteReturn = leftShoeSprites[id];
-                break;
+            switch (itemType)
+            {
+                case ItemType.Shirt:
+                    spriteReturn = shirtDefault;
+                    break;
+                case ItemType.Short:
+                    spriteReturn = shortDefault;
+                    break;
+                case ItemType.Shoes:
+                    spriteReturn = shoesDefault;
+                    break;
+                default:
+                    spriteReturn = null;
+                    break;
+            }
+        }
+        else
+        {
+            switch (itemType)
+            {
+                case ItemType.Shirt:
+                    spriteReturn = shirtsSprites[id];
+                    break;
+                case ItemType.Short:
+                    spriteReturn = shortsSprites[id];
+                    break;
+                case ItemType.Shoes:
+                    spriteReturn = ShoesSprites[id];
+                    break;
+                case ItemType.RightShoe:
+                    spriteReturn = rightShoeSprites[id];
+                    break;
+                case ItemType.LeftShoe:
+                    spriteReturn = leftShoeSprites[id];
+                    break;
+            }
         }
 
         return spriteReturn;
@@ -99,5 +124,20 @@ public class S_ItemsAsset : MonoBehaviour
         }
 
         return spriteReturn;
+    }
+
+    public int GetQtdShirts()
+    {
+        return shirtsSprites.Count;
+    }
+
+    public int GetQtdShorts()
+    {
+        return shortsSprites.Count;
+    }
+
+    public int GetQtdShoes()
+    {
+        return ShoesSprites.Count;
     }
 }

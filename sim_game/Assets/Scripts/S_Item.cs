@@ -37,6 +37,11 @@ public class S_Item
         return Equals(item);
     }
 
+    public override int GetHashCode()
+    {
+        return _id;
+    }
+
     public bool Equals (S_Item other)
     {
         if (other.type == type && other.id == id) return true;

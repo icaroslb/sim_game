@@ -23,7 +23,7 @@ public class S_Inventory
 
     public void RemoveItem (S_Item item)
     {
-        Debug.Log( listItems.Remove(item) );
+        listItems.Remove(item);
         OnInventoryChange?.Invoke(this, EventArgs.Empty);
     }
 }
