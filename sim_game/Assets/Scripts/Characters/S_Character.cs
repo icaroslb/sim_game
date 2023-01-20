@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,15 @@ using static S_Shoes;
 
 public class S_Character : MonoBehaviour
 {
+    // Encapsulate the character clothes informations
+    public class CharacterData
+    {
+        public int idShirt = -1;
+        public int idShort = -1;
+        public int idShoes = -1;
+    }
+
+    // Hash number of each character animation
     public static int A_Idle_Down  = Animator.StringToHash("CharacterIdleDown");
     public static int A_Idle_Up    = Animator.StringToHash("CharacterIdleUp");
     public static int A_Idle_Left  = Animator.StringToHash("CharacterIdleLeft");
@@ -67,18 +77,21 @@ public class S_Character : MonoBehaviour
         }
     }
 
+    // Initialization functions
     public void Initialize()
     {
-        Initialize(new S_IOCharacter() { _idShirt = -1, _idShort = -1, _idShoes = -1 });
+        Initialize(new S_Character.CharacterData() { idShirt = -1, idShort = -1, idShoes = -1 });
     }
-    public void Initialize(S_IOCharacter data, S_Item_Data.SpriteType newSpriteType = S_Item_Data.SpriteType.Down)
+    public void Initialize(S_Character.CharacterData data, S_Item_Data.SpriteType newSpriteType = S_Item_Data.SpriteType.Down)
     {
         spriteType = newSpriteType;
         type = S_Item.CharacterType.Player;
 
-        idShirt = data._idShirt;
-        idShort = data._idShort;
-        idShoes = data._idShoes;
+        GameManager.instance.ChangeClothes += OnChangeClothes;
+
+        idShirt = data.idShirt;
+        idShort = data.idShort;
+        idShoes = data.idShoes;
     }
 
 
@@ -94,6 +107,7 @@ public class S_Character : MonoBehaviour
         idShoes = value;
     }
 
+    // Verify if the character is using a specific clothing
     public bool IsUsing (S_Item item)
     {
         switch (item.type)
@@ -109,6 +123,15 @@ public class S_Character : MonoBehaviour
         return false;
     }
 
+    // Obeserver called when a clothing is changing
+    public void OnChangeClothes (object sender, EventArgs e)
+    {
+        S_ClothingSlot clotheSlot = sender as S_ClothingSlot;
+
+        ChangeClothe(clotheSlot.item.type, clotheSlot.item.id);
+    }
+
+    // Function to change a clothing
     public void ChangeClothe (S_Item.ItemType itemType, int id)
     {
         switch (itemType)
@@ -125,6 +148,7 @@ public class S_Character : MonoBehaviour
         }
     }
 
+    // Update all the clothes
     private void TotalUpdate ()
     {
         UpdateSprite(spriteShirt, S_Item.ItemType.Shirt, _idShirt);
@@ -134,14 +158,16 @@ public class S_Character : MonoBehaviour
         UpdateSprite(spriteLeftShoe, S_Item.ItemType.Shoes, _idShoes, S_Shoes.Side.Left);
     }
 
+    // Update the clothing sprite
     private void UpdateSprite(SpriteRenderer spriteR, S_Item.ItemType itemType, int id, S_Shoes.Side side = S_Shoes.Side.Right)
     {
         if (type == S_Item.CharacterType.Player)
             spriteR.sprite = S_ItemsAsset.instance.GetSprite(itemType, this.spriteType, id, side);
         else
-            spriteR.sprite = S_ItemsAsset.instance.GetAssetNPC(itemType, this.spriteType, id, side);
+            spriteR.sprite = S_ItemsAsset.instance.GetSpriteNPC(itemType, this.spriteType, id, side);
     }
 
+    // Change the sprite to the correc direction
     public void UpdateSpriteType (int direction)
     {
         if (direction == A_Idle_Down || direction == A_Run_Down)

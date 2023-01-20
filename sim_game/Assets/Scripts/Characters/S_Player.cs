@@ -5,20 +5,18 @@ using UnityEngine;
 public class S_Player : MonoBehaviour
 {
     // Player informations
-    [SerializeField] private string playerName;
-    [SerializeField] private float speed = 10.0f;
-    [SerializeField] private S_Inventory inventory;
-    [SerializeField] private S_Pocket _pocket;
+    [SerializeField] private float speed = 10.0f;        // Player movement speed
+    [SerializeField] private S_Inventory inventory;      // Player inventory
+    [SerializeField] private S_Pocket _pocket;           // Player pocket
 
-    [SerializeField] private S_Character character;
-    [SerializeField] private S_UIInventory uiInventory;
+    [SerializeField] private S_Character character;      // Player character
 
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Transform cameraPosition;
+    [SerializeField] private Rigidbody2D rb;             // RigidBody to permit movement
+    [SerializeField] private Transform cameraPosition;   // Camera to move with the player
 
-    [SerializeField] private Animator controller;
-    [SerializeField] private int currentAnimation;
-    [SerializeField] private Vector2 directionAnimation;
+    [SerializeField] private Animator controller;        // Animator to change the actual animation
+    [SerializeField] private int currentAnimation;       // The current animation is playing
+    [SerializeField] private Vector2 directionAnimation; // Determines the animation direction
 
     public S_Pocket pocket { get { return _pocket; } private set { _pocket = value; } }
 
@@ -27,10 +25,18 @@ public class S_Player : MonoBehaviour
         inventory = new S_Inventory();
         pocket = new S_Pocket(100);
         directionAnimation = Vector2.zero;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
     {
+        cameraPosition = GameObject.FindObjectOfType<Camera>().transform;
+        S_UIInventory uiInventory = GameObject.FindObjectOfType<S_UIInventory>();
+
+        uiInventory.gameObject.SetActive(false);
+
+
+
         if (uiInventory != null)
             uiInventory.insertInventory(inventory);
 

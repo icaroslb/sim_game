@@ -1,16 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using static UnityEditor.Progress;
 
+// Controls the UI store, updating all the store item slots.
 public class S_UIStore : MonoBehaviour
 {
     [SerializeField] S_Store _store;
     [SerializeField] private Transform _itemSlotContainer;
     [SerializeField] private Transform _itemSlot;
 
+
+    private void Awake()
+    {
+        _itemSlotContainer = GameObject.Find("StoreItemSlotContainer").transform;
+    }
 
     void Start()
     {
@@ -40,16 +47,19 @@ public class S_UIStore : MonoBehaviour
 
     private void UpdateStore ()
     {
+        // Destroy all store item slots
         foreach (Transform child in _itemSlotContainer)
         {
             Destroy(child.gameObject);
         }
 
+        // Create new ones
         InitializeItemSlots(_store.shirtsIds, _store.isBoughtShirt, S_Item.ItemType.Shirt);
         InitializeItemSlots(_store.shortsIds, _store.isBoughtShort, S_Item.ItemType.Short);
         InitializeItemSlots(_store.shoesIds, _store.isBoughtShoes, S_Item.ItemType.Shoes);
     }
 
+    // Initialize a list of store item slots
     private void InitializeItemSlots (in List<int> listIds, in List<bool> listIdsSold, S_Item.ItemType typeItem)
     {
         int i = 0;

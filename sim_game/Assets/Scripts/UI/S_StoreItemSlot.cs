@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
+// Slot used in store ui. When clicked calls to buy or sell
 public class S_StoreItemSlot : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] public S_Item item { get; private set; }

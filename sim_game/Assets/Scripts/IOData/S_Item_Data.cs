@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using static S_Item;
 
+// Main items data
 public class S_Item_Data : MonoBehaviour
 {
+    // Type of sprites
     public enum SpriteType
     {
         Icon,
@@ -14,10 +16,12 @@ public class S_Item_Data : MonoBehaviour
         Right
     }
     
+    // Main informations
     [SerializeField] protected ItemType type;
     [SerializeField] protected int id;
     [SerializeField] protected int price;
 
+    // Getters
     public S_Item GetItem()
     {
         return new S_Item() { type = type, id = id, price = price };

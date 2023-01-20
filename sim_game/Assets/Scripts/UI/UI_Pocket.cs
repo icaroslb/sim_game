@@ -5,6 +5,7 @@ using UnityEngine;
 
 using TMPro;
 
+// Controls UI the value of the player pocket
 public class UI_Pocket : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI value;

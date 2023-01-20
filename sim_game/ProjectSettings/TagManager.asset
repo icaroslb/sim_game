@@ -38,6 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Floor
+    uniqueID: 4022840977
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Bubbles
+    uniqueID: 1970802303
     locked: 0

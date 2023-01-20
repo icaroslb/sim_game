@@ -939,6 +939,7 @@ GameObject:
   - component: {fileID: 7437800246134688183}
   - component: {fileID: 2991727810511088584}
   - component: {fileID: 3952849988607429881}
+  - component: {fileID: 9172680032369223554}
   m_Layer: 6
   m_Name: BodyCharacter
   m_TagString: Untagged
@@ -990,6 +991,7 @@ MonoBehaviour:
   spriteLeftShoe: {fileID: 2297713777739606777}
   spriteRightHand: {fileID: 6270762859106911239}
   spriteLeftHand: {fileID: 777762983943713215}
+  spriteType: 0
 --- !u!95 &3952849988607429881
 Animator:
   serializedVersion: 4
@@ -1010,6 +1012,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!61 &9172680032369223554
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7437800246134688182}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.3}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.2, y: 3.5}
+  m_EdgeRadius: 0
 --- !u!1 &7437800246707842022
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class S_ClotheSlot : MonoBehaviour, IPointerClickHandler
+// Clothing slot used on inventary. When clicked calls to change the clothing
+public class S_ClothingSlot : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] public S_Item item { get; private set; }
     [SerializeField] private Image image;

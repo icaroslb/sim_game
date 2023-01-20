@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Encapsulate the main shoes informations
 public class S_Shoes : S_Item_Data
 {
+    // Determines which shoe
     public enum Side
     {
         Left,
         Right
     }
 
+    // Shoes sprites
     [SerializeField] private Sprite icon;
 
     [SerializeField] private Sprite UpRight;
@@ -22,6 +25,7 @@ public class S_Shoes : S_Item_Data
     [SerializeField] private Sprite RightLeft;
     [SerializeField] private Sprite LeftLeft;
 
+    // Getters
     public Sprite GetSprite(S_Item_Data.SpriteType type, S_Shoes.Side side = S_Shoes.Side.Right)
     {
         if (side == Side.Right)

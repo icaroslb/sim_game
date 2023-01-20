@@ -9,6 +9,7 @@ public class S_Store
 {
     public event EventHandler OnStoreChange;
 
+    // Lists to saves all the clothings ids
     public List<int> shirtsIds;
     public List<int> shortsIds;
     public List<int> shoesIds;
@@ -32,6 +33,7 @@ public class S_Store
         InitializeBoughtList(ref isBoughtShoes, shoesIds.Count);
     }
 
+    // Initialize the bought list
     private void InitializeBoughtList (ref List<bool> boughtList, int size)
     {
         for (int i = 0; i < size; i++)
@@ -40,6 +42,7 @@ public class S_Store
         }
     }
 
+    // Observer called when an item is boght
     public void BuyItem (object sender, EventArgs e)
     {
         S_StoreItemSlot itemBougth = sender as S_StoreItemSlot;
@@ -64,6 +67,7 @@ public class S_Store
         OnStoreChange?.Invoke(this, EventArgs.Empty);
     }
     
+    // Observer called when an item is sold
     public void SellItem(object sender, EventArgs e)
     {
         S_StoreItemSlot itemBougth = sender as S_StoreItemSlot;

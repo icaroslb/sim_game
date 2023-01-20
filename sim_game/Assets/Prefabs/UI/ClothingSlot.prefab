@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 7176899634118352119}
   - component: {fileID: 2109777140846015387}
   m_Layer: 5
-  m_Name: ClotheSlot
+  m_Name: ClothingSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

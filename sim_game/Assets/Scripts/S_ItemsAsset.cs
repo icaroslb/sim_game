@@ -6,40 +6,42 @@ using static S_Item;
 using static S_Item_Data;
 using static S_Shoes;
 
+// Class to load all clothes
 public class S_ItemsAsset : MonoBehaviour
 {
     public static S_ItemsAsset instance { get; private set; }
 
-
-    [SerializeField] private S_Clothe shirtDefault;
-    [SerializeField] private S_Clothe shortDefault;
+    // Clothes loaded
+    [SerializeField] private S_Clothing shirtDefault;
+    [SerializeField] private S_Clothing shortDefault;
     [SerializeField] private S_Shoes  shoesDefault;
 
-    [SerializeField] private List<S_Clothe> shirts;
-    [SerializeField] private List<S_Clothe> shorts;
+    [SerializeField] private List<S_Clothing> shirts;
+    [SerializeField] private List<S_Clothing> shorts;
     [SerializeField] private List<S_Shoes>  shoes;
 
-    [SerializeField] private List<S_Clothe> shirtsNPC;
-    [SerializeField] private List<S_Clothe> shortsNPC;
+    [SerializeField] private List<S_Clothing> shirtsNPC;
+    [SerializeField] private List<S_Clothing> shortsNPC;
     [SerializeField] private List<S_Shoes> shoesNPC;
 
     private void Awake()
     {
         instance = this;
 
-        shirtDefault = Resources.Load<S_Clothe>("Default/ShirtDefault");
-        shortDefault = Resources.Load<S_Clothe>("Default/ShortDefault");
+        shirtDefault = Resources.Load<S_Clothing>("Default/ShirtDefault");
+        shortDefault = Resources.Load<S_Clothing>("Default/ShortDefault");
         shoesDefault = Resources.Load<S_Shoes>("Default/ShoesDefault");
 
-        shirts = Resources.LoadAll<S_Clothe>("Shirts").ToList<S_Clothe>();
-        shorts = Resources.LoadAll<S_Clothe>("Shorts").ToList<S_Clothe>();
+        shirts = Resources.LoadAll<S_Clothing>("Shirts").ToList<S_Clothing>();
+        shorts = Resources.LoadAll<S_Clothing>("Shorts").ToList<S_Clothing>();
         shoes = Resources.LoadAll<S_Shoes>("Shoes").ToList<S_Shoes>();
 
-        shirtsNPC = Resources.LoadAll<S_Clothe>("NPC/Shirts").ToList<S_Clothe>();
-        shortsNPC = Resources.LoadAll<S_Clothe>("NPC/Shorts").ToList<S_Clothe>();
+        shirtsNPC = Resources.LoadAll<S_Clothing>("NPC/Shirts").ToList<S_Clothing>();
+        shortsNPC = Resources.LoadAll<S_Clothing>("NPC/Shorts").ToList<S_Clothing>();
         shoesNPC = Resources.LoadAll<S_Shoes>("NPC/Shoes").ToList<S_Shoes>();
     }
 
+    // Getters
     public int Getprice (ItemType itemType, int id)
     {
         int priceReturn = 0;
@@ -121,7 +123,7 @@ public class S_ItemsAsset : MonoBehaviour
         return spriteReturn;
     }
 
-    public Sprite GetAssetNPC(ItemType itemType, S_Item_Data.SpriteType spriteType, int id, S_Shoes.Side side = S_Shoes.Side.Right)
+    public Sprite GetSpriteNPC(ItemType itemType, S_Item_Data.SpriteType spriteType, int id, S_Shoes.Side side = S_Shoes.Side.Right)
     {
         Sprite spriteReturn = null;
 
@@ -144,18 +146,8 @@ public class S_ItemsAsset : MonoBehaviour
         return spriteReturn;
     }
 
-    public int GetQtdShirts()
-    {
-        return shirts.Count;
-    }
-
-    public int GetQtdShorts()
-    {
-        return shorts.Count;
-    }
-
-    public int GetQtdShoes()
-    {
-        return shoes.Count;
-    }
+    // Getters to quantities of clothes
+    public int GetQtdShirts() { return shirts.Count; }
+    public int GetQtdShorts() { return shorts.Count; }
+    public int GetQtdShoes() { return shoes.Count; }
 }
