@@ -484,6 +484,10 @@ PrefabInstance:
       propertyPath: qtdItemLine
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 8029221440574021706, guid: e96eb8ed6b73900478ee434e939f7780, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 043dc12c95ded80498d17de46e4b4dd6, type: 2}
     - target: {fileID: 8174574450292166524, guid: e96eb8ed6b73900478ee434e939f7780, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -640,6 +644,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6745270947586459449, guid: f8331a555ea202f4b874fcffc6e3a554, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 043dc12c95ded80498d17de46e4b4dd6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8331a555ea202f4b874fcffc6e3a554, type: 3}
 --- !u!114 &1936670772 stripped

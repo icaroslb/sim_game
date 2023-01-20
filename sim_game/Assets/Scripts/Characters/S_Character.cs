@@ -2,9 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static S_Item;
+using static S_Shoes;
 
 public class S_Character : MonoBehaviour
 {
+    public static int A_Idle_Down  = Animator.StringToHash("CharacterIdleDown");
+    public static int A_Idle_Up    = Animator.StringToHash("CharacterIdleUp");
+    public static int A_Idle_Left  = Animator.StringToHash("CharacterIdleLeft");
+    public static int A_Idle_Right = Animator.StringToHash("CharacterIdleRight");
+
+    public static int A_Run_Down  = Animator.StringToHash("CharacterRunDown");
+    public static int A_Run_Up    = Animator.StringToHash("CharacterRunUp");
+    public static int A_Run_Left  = Animator.StringToHash("CharacterRunLeft");
+    public static int A_Run_Right = Animator.StringToHash("CharacterRunRight");
+
     //Character Type
     [SerializeField] public S_Item.CharacterType type { get; private set; }
 
@@ -23,6 +34,8 @@ public class S_Character : MonoBehaviour
 
     [SerializeField] private SpriteRenderer spriteRightHand;
     [SerializeField] private SpriteRenderer spriteLeftHand;
+
+    [SerializeField] private S_Item_Data.SpriteType spriteType;
 
     // Getters and Setters
     public int idShirt
@@ -49,8 +62,8 @@ public class S_Character : MonoBehaviour
         set
         {
             _idShoes = value;
-            UpdateSprite(spriteRightShoe, S_Item.ItemType.RightShoe, _idShoes);
-            UpdateSprite(spriteLeftShoe, S_Item.ItemType.LeftShoe, _idShoes);
+            UpdateSprite(spriteRightShoe, S_Item.ItemType.Shoes, _idShoes, S_Shoes.Side.Right);
+            UpdateSprite(spriteLeftShoe, S_Item.ItemType.Shoes, _idShoes, S_Shoes.Side.Left);
         }
     }
 
@@ -58,8 +71,9 @@ public class S_Character : MonoBehaviour
     {
         Initialize(new S_IOCharacter() { _idShirt = -1, _idShort = -1, _idShoes = -1 });
     }
-    public void Initialize(S_IOCharacter data)
+    public void Initialize(S_IOCharacter data, S_Item_Data.SpriteType newSpriteType = S_Item_Data.SpriteType.Down)
     {
+        spriteType = newSpriteType;
         type = S_Item.CharacterType.Player;
 
         idShirt = data._idShirt;
@@ -68,8 +82,9 @@ public class S_Character : MonoBehaviour
     }
 
 
-    public void Initialize(S_Item.CharacterType newType)
+    public void Initialize(S_Item.CharacterType newType, S_Item_Data.SpriteType newSpriteType = S_Item_Data.SpriteType.Down)
     {
+        spriteType = newSpriteType;
         type = newType;
         
         int value = type.GetHashCode();
@@ -110,11 +125,42 @@ public class S_Character : MonoBehaviour
         }
     }
 
-    private void UpdateSprite(SpriteRenderer spriteR, S_Item.ItemType itemType, int id)
+    private void TotalUpdate ()
+    {
+        UpdateSprite(spriteShirt, S_Item.ItemType.Shirt, _idShirt);
+        UpdateSprite(spriteShort, S_Item.ItemType.Short, _idShort);
+
+        UpdateSprite(spriteRightShoe, S_Item.ItemType.Shoes, _idShoes, S_Shoes.Side.Right);
+        UpdateSprite(spriteLeftShoe, S_Item.ItemType.Shoes, _idShoes, S_Shoes.Side.Left);
+    }
+
+    private void UpdateSprite(SpriteRenderer spriteR, S_Item.ItemType itemType, int id, S_Shoes.Side side = S_Shoes.Side.Right)
     {
         if (type == S_Item.CharacterType.Player)
-            spriteR.sprite = S_ItemsAsset.instance.GetAsset(itemType, id);
+            spriteR.sprite = S_ItemsAsset.instance.GetAsset(itemType, this.spriteType, id, side);
         else
-            spriteR.sprite = S_ItemsAsset.instance.GetAssetNPC(itemType, id);
+            spriteR.sprite = S_ItemsAsset.instance.GetAssetNPC(itemType, this.spriteType, id, side);
+    }
+
+    public void UpdateSpriteType (int direction)
+    {
+        if (direction == A_Idle_Down || direction == A_Run_Down)
+        {
+            spriteType = S_Item_Data.SpriteType.Down;
+        }
+        else if (direction == A_Idle_Up || direction == A_Run_Up)
+        {
+            spriteType = S_Item_Data.SpriteType.Up;
+        }
+        else if (direction == A_Idle_Left || direction == A_Run_Left)
+        {
+            spriteType = S_Item_Data.SpriteType.Left;
+        }
+        else
+        {
+            spriteType = S_Item_Data.SpriteType.Right;
+        }
+
+        TotalUpdate();
     }
 }

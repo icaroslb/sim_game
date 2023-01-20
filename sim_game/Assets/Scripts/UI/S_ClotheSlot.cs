@@ -18,7 +18,7 @@ public class S_ClotheSlot : MonoBehaviour, IPointerClickHandler
         OnSlotCliked += e;
 
         Image image = transform.Find("Image").GetComponent<Image>();
-        image.sprite = S_ItemsAsset.instance.GetAsset(item.type, item.id);
+        image.sprite = S_ItemsAsset.instance.GetAsset(item.type, S_Item_Data.SpriteType.Icon, item.id);
     }
 
     public void OnPointerClick (PointerEventData eventData)

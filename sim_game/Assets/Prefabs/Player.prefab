@@ -53,6 +53,7 @@ MonoBehaviour:
   uiInventory: {fileID: 0}
   rb: {fileID: -8023320199660918085}
   cameraPosition: {fileID: 0}
+  controller: {fileID: 6745270947586459449}
 --- !u!61 &900442598641858798
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -301,3 +302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 500f3ed4c9c9a654c857d663e061e152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &6745270947586459449 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3952849988607429881, guid: bc414e264c29ab64d9783ad247dba5ff, type: 3}
+  m_PrefabInstance: {fileID: 7730248643512175552}
+  m_PrefabAsset: {fileID: 0}

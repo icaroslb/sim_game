@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static S_Item;
 
@@ -7,31 +8,35 @@ public class S_ItemsAsset : MonoBehaviour
 {
     public static S_ItemsAsset instance { get; private set; }
 
+
+    [SerializeField] private S_Clothe shirtDefault;
+    [SerializeField] private S_Clothe shortDefault;
+    [SerializeField] private S_Shoes  shoesDefault;
+
+    [SerializeField] private List<S_Clothe> shirts;
+    [SerializeField] private List<S_Clothe> shorts;
+    [SerializeField] private List<S_Shoes>  shoes;
+
+    [SerializeField] private List<S_Clothe> shirtsNPC;
+    [SerializeField] private List<S_Clothe> shortsNPC;
+    [SerializeField] private List<S_Shoes> shoesNPC;
+
     private void Awake()
     {
         instance = this;
+
+        shirtDefault = Resources.Load<S_Clothe>("Default/ShirtDefault");
+        shortDefault = Resources.Load<S_Clothe>("Default/ShortDefault");
+        shoesDefault = Resources.Load<S_Shoes>("Default/ShoesDefault");
+
+        shirts = Resources.LoadAll<S_Clothe>("Shirts").ToList<S_Clothe>();
+        shorts = Resources.LoadAll<S_Clothe>("Shorts").ToList<S_Clothe>();
+        shoes = Resources.LoadAll<S_Shoes>("Shoes").ToList<S_Shoes>();
+
+        shirtsNPC = Resources.LoadAll<S_Clothe>("NPC/Shirts").ToList<S_Clothe>();
+        shortsNPC = Resources.LoadAll<S_Clothe>("NPC/Shorts").ToList<S_Clothe>();
+        shoesNPC = Resources.LoadAll<S_Shoes>("NPC/Shoes").ToList<S_Shoes>();
     }
-
-    [SerializeField] private Sprite shirtDefault;
-    [SerializeField] private Sprite shortDefault;
-    [SerializeField] private Sprite shoesDefault;
-
-    [SerializeField] private List<Sprite> shirtsSprites;
-    [SerializeField] private List<int> shirtsPrices;
-
-    [SerializeField] private List<Sprite> shortsSprites;
-    [SerializeField] private List<int> shortsPrices;
-
-    [SerializeField] private List<Sprite> ShoesSprites;
-    [SerializeField] private List<int> ShoesPrices;
-
-    [SerializeField] private List<Sprite> rightShoeSprites;
-    [SerializeField] private List<Sprite> leftShoeSprites;
-
-    [SerializeField] private List<Sprite> shirtSpritesNPC;
-    [SerializeField] private List<Sprite> shortsSpritesNPC;
-    [SerializeField] private List<Sprite> rightShoeSpritesNPC;
-    [SerializeField] private List<Sprite> leftShoeSpritesNPC;
 
     public int Getprice (ItemType itemType, int id)
     {
@@ -40,20 +45,20 @@ public class S_ItemsAsset : MonoBehaviour
         switch (itemType)
         {
             case ItemType.Shirt:
-                priceReturn = shirtsPrices[id];
+                priceReturn = shirts[id].GetPrice();
                 break;
             case ItemType.Short:
-                priceReturn = shortsPrices[id];
+                priceReturn = shorts[id].GetPrice();
                 break;
             case ItemType.Shoes:
-                priceReturn = ShoesPrices[id];
+                priceReturn = shoes[id].GetPrice();
                 break;
         }
 
         return priceReturn;
     }
 
-    public Sprite GetAsset (ItemType itemType, int id)
+    public Sprite GetAsset (ItemType itemType, S_Item_Data.SpriteType spriteType, int id, S_Shoes.Side side = S_Shoes.Side.Right)
     {
         Sprite spriteReturn = null;
 
@@ -62,13 +67,13 @@ public class S_ItemsAsset : MonoBehaviour
             switch (itemType)
             {
                 case ItemType.Shirt:
-                    spriteReturn = shirtDefault;
+                    spriteReturn = shirtDefault.GetSprite(spriteType);
                     break;
                 case ItemType.Short:
-                    spriteReturn = shortDefault;
+                    spriteReturn = shortDefault.GetSprite(spriteType);
                     break;
                 case ItemType.Shoes:
-                    spriteReturn = shoesDefault;
+                    spriteReturn = shoesDefault.GetSprite(spriteType, side);
                     break;
                 default:
                     spriteReturn = null;
@@ -80,19 +85,13 @@ public class S_ItemsAsset : MonoBehaviour
             switch (itemType)
             {
                 case ItemType.Shirt:
-                    spriteReturn = shirtsSprites[id];
+                    spriteReturn = shirts[id].GetSprite(spriteType);
                     break;
                 case ItemType.Short:
-                    spriteReturn = shortsSprites[id];
+                    spriteReturn = shorts[id].GetSprite(spriteType);
                     break;
                 case ItemType.Shoes:
-                    spriteReturn = ShoesSprites[id];
-                    break;
-                case ItemType.RightShoe:
-                    spriteReturn = rightShoeSprites[id];
-                    break;
-                case ItemType.LeftShoe:
-                    spriteReturn = leftShoeSprites[id];
+                    spriteReturn = shoes[id].GetSprite(spriteType, side);
                     break;
             }
         }
@@ -100,26 +99,23 @@ public class S_ItemsAsset : MonoBehaviour
         return spriteReturn;
     }
 
-    public Sprite GetAssetNPC(ItemType itemType, int id)
+    public Sprite GetAssetNPC(ItemType itemType, S_Item_Data.SpriteType spriteType, int id, S_Shoes.Side side = S_Shoes.Side.Right)
     {
         Sprite spriteReturn = null;
 
         switch (itemType)
         {
             case ItemType.Shirt:
-                spriteReturn = shirtSpritesNPC[id];
+                spriteReturn = shirtsNPC[id].GetSprite(spriteType);
                 break;
             case ItemType.Short:
-                spriteReturn = shortsSpritesNPC[id];
+                spriteReturn = shortsNPC[id].GetSprite(spriteType);
                 break;
-            case ItemType.RightShoe:
-                spriteReturn = rightShoeSpritesNPC[id];
-                break;
-            case ItemType.LeftShoe:
-                spriteReturn = leftShoeSpritesNPC[id];
+            case ItemType.Shoes:
+                spriteReturn = shoesNPC[id].GetSprite(spriteType, side);
                 break;
             default:
-                spriteReturn = GetAsset(itemType, id);
+                spriteReturn = GetAsset(itemType, spriteType, id, side);
                 break;
         }
 
@@ -128,16 +124,16 @@ public class S_ItemsAsset : MonoBehaviour
 
     public int GetQtdShirts()
     {
-        return shirtsSprites.Count;
+        return shirts.Count;
     }
 
     public int GetQtdShorts()
     {
-        return shortsSprites.Count;
+        return shorts.Count;
     }
 
     public int GetQtdShoes()
     {
-        return ShoesSprites.Count;
+        return shoes.Count;
     }
 }
