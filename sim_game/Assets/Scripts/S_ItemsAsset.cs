@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using static S_Item;
+using static S_Item_Data;
+using static S_Shoes;
 
 public class S_ItemsAsset : MonoBehaviour
 {
@@ -58,7 +60,27 @@ public class S_ItemsAsset : MonoBehaviour
         return priceReturn;
     }
 
-    public Sprite GetAsset (ItemType itemType, S_Item_Data.SpriteType spriteType, int id, S_Shoes.Side side = S_Shoes.Side.Right)
+    public S_Item GetAsset (ItemType itemType, int id)
+    {
+        S_Item assetReturn = null;
+
+        switch (itemType)
+        {
+            case ItemType.Shirt:
+                assetReturn = shirts[id].GetItem();
+                break;
+            case ItemType.Short:
+                assetReturn = shorts[id].GetItem();
+                break;
+            case ItemType.Shoes:
+                assetReturn = shoes[id].GetItem();
+                break;
+        }
+
+        return assetReturn;
+    }
+
+    public Sprite GetSprite (ItemType itemType, S_Item_Data.SpriteType spriteType, int id, S_Shoes.Side side = S_Shoes.Side.Right)
     {
         Sprite spriteReturn = null;
 
@@ -115,7 +137,7 @@ public class S_ItemsAsset : MonoBehaviour
                 spriteReturn = shoesNPC[id].GetSprite(spriteType, side);
                 break;
             default:
-                spriteReturn = GetAsset(itemType, spriteType, id, side);
+                spriteReturn = GetSprite(itemType, spriteType, id, side);
                 break;
         }
 

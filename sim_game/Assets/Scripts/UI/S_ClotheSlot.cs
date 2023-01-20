@@ -9,6 +9,7 @@ using UnityEngine.EventSystems;
 public class S_ClotheSlot : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] public S_Item item { get; private set; }
+    [SerializeField] private Image image;
 
     public event EventHandler OnSlotCliked;
 
@@ -17,8 +18,7 @@ public class S_ClotheSlot : MonoBehaviour, IPointerClickHandler
         item = newItem;
         OnSlotCliked += e;
 
-        Image image = transform.Find("Image").GetComponent<Image>();
-        image.sprite = S_ItemsAsset.instance.GetAsset(item.type, S_Item_Data.SpriteType.Icon, item.id);
+        image.sprite = S_ItemsAsset.instance.GetSprite(item.type, S_Item_Data.SpriteType.Icon, item.id);
     }
 
     public void OnPointerClick (PointerEventData eventData)

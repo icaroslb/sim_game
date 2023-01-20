@@ -137,7 +137,7 @@ public class S_Character : MonoBehaviour
     private void UpdateSprite(SpriteRenderer spriteR, S_Item.ItemType itemType, int id, S_Shoes.Side side = S_Shoes.Side.Right)
     {
         if (type == S_Item.CharacterType.Player)
-            spriteR.sprite = S_ItemsAsset.instance.GetAsset(itemType, this.spriteType, id, side);
+            spriteR.sprite = S_ItemsAsset.instance.GetSprite(itemType, this.spriteType, id, side);
         else
             spriteR.sprite = S_ItemsAsset.instance.GetAssetNPC(itemType, this.spriteType, id, side);
     }

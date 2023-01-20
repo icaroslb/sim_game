@@ -11,11 +11,6 @@ public class S_UIStore : MonoBehaviour
     [SerializeField] private Transform _itemSlotContainer;
     [SerializeField] private Transform _itemSlot;
 
-    [SerializeField] private int qtdItemLine;
-
-    [SerializeField] private float itemSize;
-    [SerializeField] private float borderSizeWidth;
-    [SerializeField] private float borderSizeHeight;
 
     void Start()
     {
@@ -50,18 +45,12 @@ public class S_UIStore : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        int x = 0;
-        int y = 0;
-
-        float sizeItemWidth = itemSize + borderSizeWidth;
-        float sizeItemHeight = itemSize + borderSizeHeight;
-
-        InitializeItemSlots(_store.shirtsIds, _store.isBoughtShirt, S_Item.ItemType.Shirt, ref x, ref y, sizeItemWidth, sizeItemHeight);
-        InitializeItemSlots(_store.shortsIds, _store.isBoughtShort, S_Item.ItemType.Short, ref x, ref y, sizeItemWidth, sizeItemHeight);
-        InitializeItemSlots(_store.shoesIds, _store.isBoughtShoes, S_Item.ItemType.Shoes, ref x, ref y, sizeItemWidth, sizeItemHeight);
+        InitializeItemSlots(_store.shirtsIds, _store.isBoughtShirt, S_Item.ItemType.Shirt);
+        InitializeItemSlots(_store.shortsIds, _store.isBoughtShort, S_Item.ItemType.Short);
+        InitializeItemSlots(_store.shoesIds, _store.isBoughtShoes, S_Item.ItemType.Shoes);
     }
 
-    private void InitializeItemSlots (in List<int> listIds, in List<bool> listIdsSold, S_Item.ItemType typeItem, ref int x, ref int y, float sizeItemWidth, float sizeItemHeight)
+    private void InitializeItemSlots (in List<int> listIds, in List<bool> listIdsSold, S_Item.ItemType typeItem)
     {
         int i = 0;
 
@@ -72,27 +61,13 @@ public class S_UIStore : MonoBehaviour
             RectTransform newItem = newInstance.GetComponent<RectTransform>();
 
             newItemSlot.Initialize(
-                new S_Item
-                {
-                    id = item,
-                    type = typeItem,
-                    price = S_ItemsAsset.instance.Getprice(typeItem, item)
-                },
+                S_ItemsAsset.instance.GetAsset(typeItem, item),
                 listIdsSold[i],
                 GameManager.instance.OnItemBuySell,
                 _store.BuyItem,
                 _store.SellItem
                 );
-            newItem.anchoredPosition = new Vector2(x * sizeItemWidth, -y * sizeItemHeight);
-
-            x++;
-
-            if (x >= qtdItemLine)
-            {
-                x = 0;
-                y++;
-            }
-
+            
             i++;
         }
     }

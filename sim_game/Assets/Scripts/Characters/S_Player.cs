@@ -25,7 +25,7 @@ public class S_Player : MonoBehaviour
     private void Awake()
     {
         inventory = new S_Inventory();
-        pocket = new S_Pocket(20);
+        pocket = new S_Pocket(100);
         directionAnimation = Vector2.zero;
     }
 

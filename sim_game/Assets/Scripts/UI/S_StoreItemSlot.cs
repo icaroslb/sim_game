@@ -29,7 +29,7 @@ public class S_StoreItemSlot : MonoBehaviour, IPointerClickHandler
 
         isSold = itemIsSold;
         
-        image.sprite = S_ItemsAsset.instance.GetAsset(item.type, S_Item_Data.SpriteType.Icon, item.id);
+        image.sprite = S_ItemsAsset.instance.GetSprite(item.type, S_Item_Data.SpriteType.Icon, item.id);
 
         price.text = item.price.ToString();
 
