@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: Up
       value: 
-      objectReference: {fileID: 21300000, guid: e0c9e04098a82014e8622993e3aa3540, type: 3}
+      objectReference: {fileID: -1572717620, guid: e41525e712718c644b083ec88c272bc1, type: 3}
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: id
       value: 1
@@ -18,15 +18,15 @@ PrefabInstance:
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: Down
       value: 
-      objectReference: {fileID: 21300000, guid: 974d3f766bd1bab468db672d80e90b14, type: 3}
+      objectReference: {fileID: 1895847077, guid: e41525e712718c644b083ec88c272bc1, type: 3}
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: Left
       value: 
-      objectReference: {fileID: 21300000, guid: 8c0b49cd8fd34454483a29b5bff0f53d, type: 3}
+      objectReference: {fileID: -360679528, guid: e41525e712718c644b083ec88c272bc1, type: 3}
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: icon
       value: 
-      objectReference: {fileID: 21300000, guid: 974d3f766bd1bab468db672d80e90b14, type: 3}
+      objectReference: {fileID: 1895847077, guid: e41525e712718c644b083ec88c272bc1, type: 3}
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: type
       value: 1
@@ -34,7 +34,7 @@ PrefabInstance:
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: Right
       value: 
-      objectReference: {fileID: 21300000, guid: 5c2c5760296c0b14ab118e04746ef730, type: 3}
+      objectReference: {fileID: -20605566, guid: e41525e712718c644b083ec88c272bc1, type: 3}
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: price
       value: 10

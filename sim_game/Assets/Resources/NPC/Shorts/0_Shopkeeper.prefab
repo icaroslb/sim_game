@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: Up
       value: 
-      objectReference: {fileID: 21300000, guid: 34cfb06aa50a3834ea3e68a8ca210f78, type: 3}
+      objectReference: {fileID: -1877306261, guid: 59910a05f6dac4148bbc9fc4ba061253, type: 3}
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: id
       value: 0
@@ -18,15 +18,15 @@ PrefabInstance:
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: Down
       value: 
-      objectReference: {fileID: 21300000, guid: 31be3c9dcfe281a4393240f2a29648cb, type: 3}
+      objectReference: {fileID: -565275131, guid: 59910a05f6dac4148bbc9fc4ba061253, type: 3}
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: Left
       value: 
-      objectReference: {fileID: 21300000, guid: f96719ea2546ce7428975d9f5c6ecbf6, type: 3}
+      objectReference: {fileID: -2088325435, guid: 59910a05f6dac4148bbc9fc4ba061253, type: 3}
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: icon
       value: 
-      objectReference: {fileID: 21300000, guid: 31be3c9dcfe281a4393240f2a29648cb, type: 3}
+      objectReference: {fileID: -565275131, guid: 59910a05f6dac4148bbc9fc4ba061253, type: 3}
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: type
       value: 1
@@ -34,7 +34,7 @@ PrefabInstance:
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: Right
       value: 
-      objectReference: {fileID: 21300000, guid: 75106c24d1866364799154964f65d06a, type: 3}
+      objectReference: {fileID: 1894325215, guid: 59910a05f6dac4148bbc9fc4ba061253, type: 3}
     - target: {fileID: 3574293495435882463, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: m_RootOrder
       value: 0

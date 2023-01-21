@@ -35,15 +35,11 @@ public class S_Character : MonoBehaviour
     [SerializeField] private int _idShoes;
 
     // Clothes renderer
-    [SerializeField] private SpriteRenderer spriteHair;
     [SerializeField] private SpriteRenderer spriteShirt;
     [SerializeField] private SpriteRenderer spriteShort;
 
     [SerializeField] private SpriteRenderer spriteRightShoe;
     [SerializeField] private SpriteRenderer spriteLeftShoe;
-
-    [SerializeField] private SpriteRenderer spriteRightHand;
-    [SerializeField] private SpriteRenderer spriteLeftHand;
 
     [SerializeField] private S_Item_Data.SpriteType spriteType;
 

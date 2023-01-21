@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: Up
       value: 
-      objectReference: {fileID: 21300000, guid: 553cc764ded8b5549a8411c66d33c51a, type: 3}
+      objectReference: {fileID: -1846020717, guid: 2b08a83fd7381dd42b2eb7870fc28178, type: 3}
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: id
       value: 1
@@ -18,19 +18,19 @@ PrefabInstance:
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: Down
       value: 
-      objectReference: {fileID: 21300000, guid: b831a1d610e17da47bf040dc45b8bdb4, type: 3}
+      objectReference: {fileID: -125675321, guid: 2b08a83fd7381dd42b2eb7870fc28178, type: 3}
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: Left
       value: 
-      objectReference: {fileID: 21300000, guid: cb88168c030963249ad91f5a25038123, type: 3}
+      objectReference: {fileID: -937480893, guid: 2b08a83fd7381dd42b2eb7870fc28178, type: 3}
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: icon
       value: 
-      objectReference: {fileID: 21300000, guid: b831a1d610e17da47bf040dc45b8bdb4, type: 3}
+      objectReference: {fileID: -125675321, guid: 2b08a83fd7381dd42b2eb7870fc28178, type: 3}
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: Right
       value: 
-      objectReference: {fileID: 21300000, guid: 6d87e03221ae8b747bd7c32395730657, type: 3}
+      objectReference: {fileID: -393979095, guid: 2b08a83fd7381dd42b2eb7870fc28178, type: 3}
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: price
       value: 10
@@ -81,7 +81,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4895110434837107244, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: m_Name
-      value: Clothe
+      value: Shirt_1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}

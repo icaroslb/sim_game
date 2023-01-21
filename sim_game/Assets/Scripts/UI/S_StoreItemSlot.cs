@@ -24,16 +24,21 @@ public class S_StoreItemSlot : MonoBehaviour, IPointerClickHandler
     public void Initialize(S_Item newItem, bool itemIsSold, EventHandler eClick, EventHandler eBuy, EventHandler eSell)
     {
         item = newItem;
-        OnSlotCliked += eClick;
-        OnBuy += eBuy;
-        OnSell += eSell;
-
         isSold = itemIsSold;
-        
+
         image.sprite = S_ItemsAsset.instance.GetSprite(item.type, S_Item_Data.SpriteType.Icon, item.id);
 
         price.text = item.price.ToString();
 
+        OnSlotCliked += eClick;
+        OnBuy += eBuy;
+        OnSell += eSell;
+
+        UpdateItem();
+    }
+
+    public void UpdateItem ()
+    {
         if (!isSold)
         {
             action.text = "Buy";
@@ -44,6 +49,8 @@ public class S_StoreItemSlot : MonoBehaviour, IPointerClickHandler
             action.text = "Sell";
             action.color = Color.red;
         }
+
+        action.ForceMeshUpdate();
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -53,11 +60,15 @@ public class S_StoreItemSlot : MonoBehaviour, IPointerClickHandler
 
     public void Buy ()
     {
-            OnBuy?.Invoke(this, EventArgs.Empty);
+        OnBuy?.Invoke(this, EventArgs.Empty);
+        isSold = true;
+        UpdateItem();
     }
 
     public void Sell ()
     {
-            OnSell?.Invoke(this, EventArgs.Empty);
+        OnSell?.Invoke(this, EventArgs.Empty);
+        isSold = false;
+        UpdateItem();
     }
 }

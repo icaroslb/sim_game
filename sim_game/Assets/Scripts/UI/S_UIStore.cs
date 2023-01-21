@@ -2,9 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 // Controls the UI store, updating all the store item slots.
 public class S_UIStore : MonoBehaviour
@@ -35,7 +33,6 @@ public class S_UIStore : MonoBehaviour
         for (int i = 0; i < qtdShoes; i++) shoesId.Add(i);
 
         _store = new S_Store(shirtsId, shortsId, shoesId);
-        _store.OnStoreChange += OnStoreChange;
 
         UpdateStore();
     }

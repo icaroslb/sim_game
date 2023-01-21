@@ -10,19 +10,19 @@ PrefabInstance:
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: Up
       value: 
-      objectReference: {fileID: 21300000, guid: 37d609063e6058f4f8af21a98e60716f, type: 3}
+      objectReference: {fileID: -1858216518, guid: 313e1f11ea9ea1e46a4015d8c2abdc7d, type: 3}
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: Down
       value: 
-      objectReference: {fileID: 21300000, guid: 935dbe9f2257fb94cab0cb5314c86439, type: 3}
+      objectReference: {fileID: 836628109, guid: 313e1f11ea9ea1e46a4015d8c2abdc7d, type: 3}
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: Left
       value: 
-      objectReference: {fileID: 21300000, guid: 7394dfaff00e03b438cce8939dd55aee, type: 3}
+      objectReference: {fileID: -510676502, guid: 313e1f11ea9ea1e46a4015d8c2abdc7d, type: 3}
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: icon
       value: 
-      objectReference: {fileID: 21300000, guid: 935dbe9f2257fb94cab0cb5314c86439, type: 3}
+      objectReference: {fileID: 836628109, guid: 313e1f11ea9ea1e46a4015d8c2abdc7d, type: 3}
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: type
       value: 1
@@ -30,7 +30,7 @@ PrefabInstance:
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: Right
       value: 
-      objectReference: {fileID: 21300000, guid: c3b3af79294da0a4fa3221f9efb6182c, type: 3}
+      objectReference: {fileID: -296580762, guid: 313e1f11ea9ea1e46a4015d8c2abdc7d, type: 3}
     - target: {fileID: -567360318911708810, guid: 26e30ef37142a124cb4331f288c1438b, type: 3}
       propertyPath: price
       value: 10
